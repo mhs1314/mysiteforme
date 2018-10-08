@@ -5,7 +5,6 @@ import com.mysiteforme.admin.base.MySysUser;
 import com.mysiteforme.admin.entity.Log;
 import com.mysiteforme.admin.exception.GlobalExceptionHandler;
 import com.mysiteforme.admin.util.ToolUtil;
-import com.xiaoleilu.hutool.http.HttpUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -22,10 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Map;
 
 /**

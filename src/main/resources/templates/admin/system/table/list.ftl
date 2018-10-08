@@ -38,6 +38,7 @@
     <script type="text/html" id="comment">
         <!-- 这里的 checked 的状态只是演示 -->
         {{#  if(d.comment != null && d.comment != ''){ }}
+
         {{#  layui.each(d.comment.split(','), function(index, item){ }}
         {{# if(item == '1'){ }}
         <span class="layui-badge layui-bg-blue">基本数据表</span>
@@ -55,13 +56,15 @@
         <span class="layui-badge layui-bg-green">编辑器控件</span>
         {{# }else if(item.indexOf('switch')>=0){ }}
         <span class="layui-badge layui-bg-green">开关控件</span>
+        {{# }else{ }}
+        <span class="layui-badge layui-bg-blue">注释：{{item}}</span>
         {{# } }}
         {{#  }); }}
         {{#  } }}
     </script>
 
     <script type="text/html" id="barDemo">
-        {{# if(d.name.indexOf('sys_') < 0 && d.name.indexOf('qrtz_')<0){ }}
+        {{# if((d.name.indexOf('sys_') < 0 && d.name.indexOf('qrtz_')<0 ) || (d.name.indexOf('_qrtz_')>0 || d.name.indexOf('_sys_')>0 ) ){ }}
         <a class="layui-btn layui-btn-xs" href="javascript:" data-url="${base}/table/edit?name={{d.name}}" lay-event="edit"><cite>编辑</cite></a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:" lay-event="del">删除</a>
         {{# } }}

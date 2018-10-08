@@ -50,9 +50,9 @@
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 100px;">请选择表类型</label>
         <div class="layui-input-block">
-            <input type="radio" name="tabletype" value="1" title="基本类型" <#if (tableVO.tabletype == 1)>checked=""</#if>  disabled="">
-            <input type="radio" name="tabletype" value="2" title="树结构类型(有父子继承关系的)" <#if (tableVO.tabletype == 2)>checked=""</#if> disabled="">
-            <input type="radio" name="tabletype" value="3" title="辅助表(多对多关联关系表)" <#if (tableVO.tabletype == 3)>checked=""</#if> disabled="">
+            <input type="radio" name="tabletype" value="1" title="基本类型" <#if (tableVO.tabletype == 1)>checked=""</#if>  >
+            <input type="radio" name="tabletype" value="2" title="树结构类型(有父子继承关系的)" <#if (tableVO.tabletype == 2)>checked=""</#if> >
+            <input type="radio" name="tabletype" value="3" title="辅助表(多对多关联关系表)" <#if (tableVO.tabletype == 3)>checked=""</#if> >
         </div>
     </div>
 

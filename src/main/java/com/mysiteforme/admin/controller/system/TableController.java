@@ -233,7 +233,8 @@ public class TableController extends BaseController{
             return null;
         }
         if(tableType != 1 && tableType != 2 && tableType != 3){
-            return null;
+           // return null;
+            tableType=1;
         }
         Map<String,Object> map = Maps.newHashMap();
         map.put("name",name);

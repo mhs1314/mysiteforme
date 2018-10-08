@@ -2,7 +2,7 @@
 <html class="loginHtml">
 <head>
     <meta charset="utf-8">
-    <title>MySiteForMe系统后台--孤独的旅行家</title>
+    <title>同城小程序后台</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -34,7 +34,7 @@
 <body>
 <div id="bg-body"></div>
 <div class="login">
-    <h1>孤独的旅行家</h1>
+    <h1>同城小程序后台</h1>
     <form class="layui-form" action="${base}/login/main" method="post">
         <div class="layui-form-item">
             <input class="layui-input" name="username" placeholder="用户名" lay-verify="required" type="text" autocomplete="off">
@@ -52,9 +52,9 @@
         <button class="layui-btn login_btn" lay-submit="" lay-filter="login">登录</button>
     </form>
 </div>
-<div class="loginTip">
+<#--<div class="loginTip">
     <span>用户名:admin &nbsp;&nbsp;&nbsp;密码:123456</span>
-</div>
+</div>-->
 <script type="text/javascript" src="${base}/static/layui/layui.js"></script>
 <script type="text/javascript" src="${base}/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="${base}/static/js/jquery.bcat.bgswitcher.js"></script>
