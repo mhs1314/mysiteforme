@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>mhsAdmin</name>
+	<name>myAdmin</name>
 	<description>this project for myself</description>
 
 	<parent>
