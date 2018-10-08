@@ -79,7 +79,6 @@ public class CreateTableFiles {
 
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
         strategy.setInclude(tableNames); // 需要生成的表
-        strategy.setTablePrefix(new String[] { "wx_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.nochange);// 表名生成策略
 //        strategy.setExclude(new String[]{"sys_user_role","sys_role_menu","sys_group_ur"}); // 排除生成的表
         // 自定义实体父类
