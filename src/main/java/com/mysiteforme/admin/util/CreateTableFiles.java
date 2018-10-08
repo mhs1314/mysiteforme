@@ -112,7 +112,7 @@ public class CreateTableFiles {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.mysiteforme");
-        pc.setModuleName("admin");
+        pc.setModuleName("wx");
         pc.setMapper("dao");
         pc.setController("controller");
         mpg.setPackageInfo(pc);

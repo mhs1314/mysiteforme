@@ -187,7 +187,7 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright &copy; 2017-2018 <a href="https://github.com/wangl1989/mysiteforme">Mysiteforme</a> All rights reserved.
+   Copyright &copy; 2017-2018 <a href="https://github.com/wangl1989/mysiteforme">mhsAdmin</a> All rights reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -313,7 +313,7 @@
    区分信息来替换(但不包括括号)。文本必须以文件格式适当的注释句法包含在其中。
    另外建议将文件名或类别名以及目的说明包含在相同的"打印页"上作为版权通知，以更加容易的区分出第三方档案。
 
-   版权所有 2017-2018 <a href="https://github.com/wangl1989/mysiteforme">Mysiteforme</a> 根据2.0版本Apache许可证("许可证")授权；
+   版权所有 2017-2018 <a href="https://github.com/wangl1989/mysiteforme">mhsAdmin</a> 根据2.0版本Apache许可证("许可证")授权；
    根据本许可证，用户可以不使用此文件。
 
    用户可从下列网址获得许可证副本：http://www.apache.org/licenses/LICENSE-2.0

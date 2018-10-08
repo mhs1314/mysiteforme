@@ -29,36 +29,36 @@
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
         <div class="layui-inline">
-            <a class="layui-btn layui-btn-normal" data-type="addWxContentConfig">添加内容-基本配置</a>
+            <a class="layui-btn layui-btn-normal" data-type="addWx_content_config">添加内容-基本配置</a>
         </div>
     </form>
   </div>
 </fieldset>
 <div class="layui-form users_list">
     <table class="layui-table" id="test" lay-filter="demo"></table>
-    <script type="text/html" id="isOpenAudio">
-        {{#  if(d.openAudio == true){ }}
+    <script type="text/html" id="is_open_audio">
+        {{#  if(d.is_open_audio == true){ }}
         <span>是</span>
         {{# }else{ }}
         <span>否</span>
         {{# } }}
     </script>
-    <script type="text/html" id="isOpenComment">
-        {{#  if(d.openComment == true){ }}
+    <script type="text/html" id="is_open_comment">
+        {{#  if(d.is_open_comment == true){ }}
         <span>是</span>
         {{# }else{ }}
         <span>否</span>
         {{# } }}
     </script>
-    <script type="text/html" id="isNeedExamine">
-        {{#  if(d.needExamine == true){ }}
+    <script type="text/html" id="is_need_examine">
+        {{#  if(d.is_need_examine == true){ }}
         <span>是</span>
         {{# }else{ }}
         <span>否</span>
         {{# } }}
     </script>
-    <script type="text/html" id="isShowLike">
-        {{#  if(d.showLike == true){ }}
+    <script type="text/html" id="is_show_like">
+        {{#  if(d.is_show_like == true){ }}
         <span>是</span>
         {{# }else{ }}
         <span>否</span>
@@ -97,7 +97,7 @@
                 var editIndex = layer.open({
                     title : "编辑内容-基本配置",
                     type : 2,
-                    content : "${base}/admin/wxContentConfig/edit?id="+data.id,
+                    content : "${base}/wx/wx_content_config/edit?id="+data.id,
                     success : function(layero, index){
                         setTimeout(function(){
                             layer.tips('点击此处返回内容-基本配置列表', '.layui-layer-setwin .layui-layer-close', {
@@ -115,7 +115,7 @@
             if(obj.event === "del"){
                 layer.confirm("你确定要删除该内容-基本配置么？",{btn:['是的,我确定','我再想想']},
                         function(){
-                            $.post("${base}/admin/wxContentConfig/delete",{"id":data.id},function (res){
+                            $.post("${base}/wx/wx_content_config/delete",{"id":data.id},function (res){
                                 if(res.success){
                                     layer.msg("删除成功",{time: 1000},function(){
                                         location.reload();
@@ -132,7 +132,7 @@
 
         var t = {
             elem: '#test',
-            url:'${base}/admin/wxContentConfig/list',
+            url:'${base}/wx/wx_content_config/list',
             method:'post',
             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
@@ -145,12 +145,12 @@
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             cols: [[
                 {type:'checkbox'},
-                {field:'openAudio', title: '音视频自动播放 0不开启1开启',templet:'#isOpenAudio'},
-                {field:'openComment', title: '评论留言功能：0关闭 1开启',templet:'#isOpenComment'},
-                {field:'needExamine', title: '评论审核：0不审核 1审核',templet:'#isNeedExamine'},
-                {field:'browseIntegralNum', title: '浏览文章增加积分'},
-                {field:'commentIntegralNum', title: '评论文章增加积分'},
-                {field:'showLike', title: '显示相关爱好物 0不显示 1显示',templet:'#isShowLike'},
+                {field:'is_open_audio', title: '音视频自动播放 0不开启1开启',templet:'#is_open_audio'},
+                {field:'is_open_comment', title: '评论留言功能：0关闭 1开启',templet:'#is_open_comment'},
+                {field:'is_need_examine', title: '评论审核：0不审核 1审核',templet:'#is_need_examine'},
+                {field:'browse_integral_num', title: '浏览文章增加积分'},
+                {field:'comment_integral_num', title: '评论文章增加积分'},
+                {field:'is_show_like', title: '显示相关爱好物 0不显示 1显示',templet:'#is_show_like'},
                 {field:'delFlag',    title: '内容-基本配置状态',width:'12%',templet:'#userStatus'},
                 {field:'createDate',  title: '创建时间',width:'15%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
                 {fixed: 'right', title:'操作',  width: '15%', align: 'center',toolbar: '#barDemo'}
@@ -159,11 +159,11 @@
         table.render(t);
 
         var active={
-            addWxContentConfig : function(){
+            addWx_content_config : function(){
                 var addIndex = layer.open({
                     title : "添加内容-基本配置",
                     type : 2,
-                    content : "${base}/admin/wxContentConfig/add",
+                    content : "${base}/wx/wx_content_config/add",
                     success : function(layero, addIndex){
                         setTimeout(function(){
                             layer.tips('点击此处返回内容-基本配置列表', '.layui-layer-setwin .layui-layer-close', {

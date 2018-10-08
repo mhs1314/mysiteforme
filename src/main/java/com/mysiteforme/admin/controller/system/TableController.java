@@ -414,7 +414,6 @@ public class TableController extends BaseController{
                 return RestResponse.failure("数据表不能为空");
             }
         }
-
         synchronized(this){
             File baseFloder = new File(createTableFiles.baseDic);
             ZipUtil.deleteDir(baseFloder);
