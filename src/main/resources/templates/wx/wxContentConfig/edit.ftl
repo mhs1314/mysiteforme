@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>内容-基本配置添加--${site.name}</title>
+    <title>内容-基本配置编辑--${site.name}</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -31,55 +31,52 @@
 </head>
 <body class="childrenBody">
 <form class="layui-form" style="width:80%;">
+    <input value="${wxContentConfig.id}" name="id" type="hidden">
     <div class="layui-form-item">
-        <label class="layui-form-label">音视频自动播放 0不开启1开启</label>
+        <label class="layui-form-label">音视频自动播放 0关闭 1开启</label>
         <div class="layui-input-block">
-
-            <input type="checkbox" name="is_open_audio"  lay-skin="switch" value="1" lay-text="是|否" >
+                <input type="checkbox" name="openAudio"  lay-skin="switch" lay-text="是|否" value="1"  <#if (wxContentConfig.openAudio == true)> checked </#if> >
 
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">评论留言功能：0关闭 1开启</label>
         <div class="layui-input-block">
-
-            <input type="checkbox" name="is_open_comment"  lay-skin="switch" value="1" lay-text="是|否" >
+                <input type="checkbox" name="openComment"  lay-skin="switch" lay-text="是|否" value="1"  <#if (wxContentConfig.openComment == true)> checked </#if> >
 
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">评论审核：0不审核 1审核</label>
         <div class="layui-input-block">
-
-            <input type="checkbox" name="is_need_examine"  lay-skin="switch" value="1" lay-text="是|否" >
+                <input type="checkbox" name="needExamine"  lay-skin="switch" lay-text="是|否" value="1"  <#if (wxContentConfig.needExamine == true)> checked </#if> >
 
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">浏览文章增加积分</label>
         <div class="layui-input-block">
+                <input  type="text" class="layui-input" value = "${wxContentConfig.browseIntegralNum}" name="browseIntegralNum"  placeholder="请输入浏览文章增加积分">
 
-            <input  type="text"  class="layui-input" name="browse_integral_num"  placeholder="请输入浏览文章增加积分">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">评论文章增加积分</label>
         <div class="layui-input-block">
+                <input  type="text" class="layui-input" value = "${wxContentConfig.commentIntegralNum}" name="commentIntegralNum"  placeholder="请输入评论文章增加积分">
 
-            <input  type="text"  class="layui-input" name="comment_integral_num"  placeholder="请输入评论文章增加积分">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">显示相关爱好物 0不显示 1显示</label>
         <div class="layui-input-block">
-
-            <input type="checkbox" name="is_show_like"  lay-skin="switch" value="1" lay-text="是|否" >
+                <input type="checkbox" name="showLike"  lay-skin="switch" lay-text="是|否" value="1"  <#if (wxContentConfig.showLike == true)> checked </#if> >
 
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="addWx_content_config">立即提交</button>
+            <button class="layui-btn" lay-submit="" lay-filter="addWxContentConfig">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -92,40 +89,36 @@
                 layer = layui.layer;
 
 
-        form.on("submit(addWx_content_config)",function(data){
-                     if(undefined === data.field.openAudio || '0' === data.field.openAudio || null === data.field.openAudio){
-                    data.field.openAudio = false;
-                }else{
-                    data.field.openAudio = true;
-                }
-
-                     if(undefined === data.field.openComment || '0' === data.field.openComment || null === data.field.openComment){
-                    data.field.openComment = false;
-                }else{
-                    data.field.openComment = true;
-                }
-
-                     if(undefined === data.field.needExamine || '0' === data.field.needExamine || null === data.field.needExamine){
-                    data.field.needExamine = false;
-                }else{
-                    data.field.needExamine = true;
-                }
-
-                     if(undefined === data.field.showLike || '0' === data.field.showLike || null === data.field.showLike){
-                    data.field.showLike = false;
-                }else{
-                    data.field.showLike = true;
-                }
-
-
+        form.on("submit(addWxContentConfig)",function(data){
+                 if(undefined === data.field.openAudio || '0' === data.field.openAudio || null === data.field.openAudio){
+                data.field.openAudio = false;
+            }else{
+                data.field.openAudio = true;
+            }
+                 if(undefined === data.field.openComment || '0' === data.field.openComment || null === data.field.openComment){
+                data.field.openComment = false;
+            }else{
+                data.field.openComment = true;
+            }
+                 if(undefined === data.field.needExamine || '0' === data.field.needExamine || null === data.field.needExamine){
+                data.field.needExamine = false;
+            }else{
+                data.field.needExamine = true;
+            }
+                 if(undefined === data.field.showLike || '0' === data.field.showLike || null === data.field.showLike){
+                data.field.showLike = false;
+            }else{
+                data.field.showLike = true;
+            }
             var loadIndex = layer.load(2, {
                 shade: [0.3, '#333']
             });
-            $.post("${base}/wx/wx_content_config/add",data.field,function(res){
+            //给角色赋值
+            $.post("${base}/wx/wxContentConfig/edit",data.field,function(res){
                 layer.close(loadIndex);
                 if(res.success){
-                    parent.layer.msg("内容-基本配置添加成功！",{time:1000},function(){
-                        parent.layer.close(parent.addIndex);
+                    parent.layer.msg("内容-基本配置编辑成功！",{time:1000},function(){
+                        parent.layer.close(parent.editIndex);
                         //刷新父页面
                         parent.location.reload();
                     });

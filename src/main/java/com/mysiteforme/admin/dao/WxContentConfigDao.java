@@ -1,7 +1,7 @@
 package com.mysiteforme.admin.dao;
 
-import com.mysiteforme.admin.entity.Wx_content_config;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.mysiteforme.admin.entity.WxContentConfig;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author wangl
- * @since 2018-10-08
+ * @since 2018-10-09
  */
-public interface Wx_content_configDao extends BaseMapper<Wx_content_config> {
+public interface WxContentConfigDao extends BaseMapper<WxContentConfig> {
 
 }

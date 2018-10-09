@@ -1,15 +1,16 @@
 package com.mysiteforme.admin.service;
 
-import com.mysiteforme.admin.entity.Wx_content_config;
 import com.baomidou.mybatisplus.service.IService;
+import com.mysiteforme.admin.entity.WxContentConfig;
+
 /**
  * <p>
  * 内容-基本配置 服务类
  * </p>
  *
  * @author wangl
- * @since 2018-10-08
+ * @since 2018-10-09
  */
-public interface Wx_content_configService extends IService<Wx_content_config> {
+public interface WxContentConfigService extends IService<WxContentConfig> {
 
 }
