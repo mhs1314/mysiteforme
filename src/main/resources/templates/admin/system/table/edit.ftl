@@ -215,13 +215,13 @@
                 <input type="checkbox" checked="" id="isNullValue" name="isNullValue" value="YES" lay-skin="switch" lay-text="YES|NO">
             </div>
         </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="fieldFilter" id="fieldsubmit">我都填好了</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="fieldFilter" id="fieldsubmit">我都填好了</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
             </div>
-        </div>
-        <form>
+            <form>
 </div>
 
 <script type="text/javascript" src="${base}/static/layui/layui.js"></script>
