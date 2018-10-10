@@ -134,7 +134,7 @@
         CREATE TABLE `${name}`(
         `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
           <foreach collection="fieldList" item="field">
-              `${field.name}` ${field.type}<if test="field.length != null and field.length != 0">(${field.length})</if> <if test="field.isNullValue != null and field.isNullValue == 'NO'">not null</if> COMMENT '${field.comment}',
+              `${field.name}` ${field.type}<if test="field.length != null ">(${field.length})</if> <if test="field.isNullValue != null and field.isNullValue == 'NO'">not null</if> COMMENT '${field.comment}',
           </foreach>
         <if test="tabletype != null and tabletype == 1">
             `create_date` datetime DEFAULT NULL COMMENT '创建时间',
@@ -162,17 +162,17 @@
 
     <!--添加/字段-->
     <update id="addColumn" parameterType="java.util.Map">
-        alter table ${tableName} add  ${name} ${type}<if test="length != null and length != 0">(${length})</if> <if test="isNullValue == 'NO'">not Null</if> COMMENT '${comment}';
+        alter table ${tableName} add  ${name} ${type}<if test="length != null ">(${length})</if> <if test="isNullValue == 'NO'">not Null</if> COMMENT '${comment}';
     </update>
 
     <!---修改字段(不修改字段名)-->
     <update id="updateColumnSameName" parameterType="java.util.Map">
-        alter table ${tableName} modify ${name} ${type}<if test="length != null and length != 0">(${length})</if> <if test="isNullValue == 'NO'">not Null</if> COMMENT '${comment}';
+        alter table ${tableName} modify ${name} ${type}<if test="length != null ">(${length})</if> <if test="isNullValue == 'NO'">not Null</if> COMMENT '${comment}';
     </update>
 
     <!---修改字段(同时修改字段名)-->
     <update id="updateColumnDiffName" parameterType="java.util.Map">
-        alter table ${tableName} CHANGE ${oldName} ${name} ${type}<if test="length != null and length != 0">(${length})</if> <if test="isNullValue == 'NO'">not Null</if> COMMENT '${comment}';
+        alter table ${tableName} CHANGE ${oldName} ${name} ${type}<if test="length != null ">(${length})</if> <if test="isNullValue == 'NO'">not Null</if> COMMENT '${comment}';
     </update>
 
     <!--删除字段-->

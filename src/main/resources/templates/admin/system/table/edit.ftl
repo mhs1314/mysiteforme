@@ -156,19 +156,20 @@
                         <option value="INT" data-default="11">INT(JAVA:Integer)</option>
                         <option value="BIGINT" data-default="20">BIGINT(JAVA:Long)</option>
                         <option value="FLOAT" data-default="20">FLOAT(JAVA:Float)</option>
-                        <option value="DOUBLE" data-default="20">DOUBLE(JAVA:Double)</option>
+                        <option value="DOUBLE" data-default="10,2">DOUBLE(JAVA:Double)</option>
                         <option value="DECIMAL" data-default="11">DECIMAL(JAVA:BigDecimal)</option>
                     </optgroup>
                     <optgroup label="日期类型">
                         <option value="DATETIME">DATETIME(JAVA:Date)</option>
                     </optgroup>
                 </select>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">字段长度</label>
             <div class="layui-input-block">
-                <input type="number" class="layui-input" lay-verType="tips" name="length" id="fieldLength" lay-verify="lengthCheck" placeholder="字段长度(不确认长度可以不填)">
+                <input type="text" class="layui-input" lay-verType="tips" name="length" id="fieldLength" lay-verify="lengthCheck" placeholder="字段长度(不确认长度可以不填)">
             </div>
         </div>
         <div class="layui-form-item">
@@ -264,7 +265,7 @@
         },500);
         <#if (tableVO.tabletype == 3)>
             $("#addField").hide();
-            $("input[name='length']").val("20").attr("disabled","");
+            $("input[name='length']").attr("disabled","");
             $("select[name='type']").empty().html('<option value="BIGINT" data-default="20">BIGINT(JAVA:Long)</option>');
             $("select[name='dofor']").empty().html('<option value="0">辅助字段,不在页面显示</option>');
             $("input[name='listIsShow']").removeAttr("checked").attr("disabled","");
@@ -275,7 +276,7 @@
         $("#addField").on('click',function () {
             $("#fieldForm").empty().html(fieldFormHtml);
             if($("input[name='tabletype']:checked").val() === '3'){
-                $("input[name='length']").val("20").attr("disabled","");
+                $("input[name='length']").attr("disabled","");
                 $("select[name='type']").empty().html('<option value="BIGINT" data-default="20">BIGINT(JAVA:Long)</option>');
                 $("select[name='dofor']").empty().html('<option value="0">辅助字段,不在页面显示</option>');
                 $("input[name='listIsShow']").removeAttr("checked").attr("disabled","");
@@ -302,9 +303,7 @@
             },
             lengthCheck:function (value,item) {
                 if(value !== "" && value != null){
-                    if(isNaN(value) || value<=0){
-                        return '必须输入一个正整数';
-                    }
+                     //   return '必须输入一个值';
                 }else{
                     var v = $("select[name='type']").find("option:selected").data("default");
                     if(v !=null && v !== ""){
@@ -380,7 +379,7 @@
                 if(/(^\_)|(\__)|(\_+$)/.test(value)){
                     return '字段名首尾不能出现下划线\'_\'';
                 }
-                if(value.indexOf('sys')>=0){
+                if(value.indexOf('sys')>=0 && value.indexOf('_sys_')<0){
                     return '表名中不能有sys字符';
                 }
             }

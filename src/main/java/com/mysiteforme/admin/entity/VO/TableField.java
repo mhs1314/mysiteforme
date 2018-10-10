@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class TableField implements Serializable{
     private String name;
-    private Integer length;
+    private String length;
     private String type;
     /**
      * 字段是否可以为空
@@ -76,13 +76,7 @@ public class TableField implements Serializable{
         this.name = name;
     }
 
-    public Integer getLength() {
-        return length;
-    }
 
-    public void setLength(Integer length) {
-        this.length = length;
-    }
 
     public String getIsNullValue() {
         return isNullValue;
@@ -178,5 +172,13 @@ public class TableField implements Serializable{
 
     public void setListIsSearch(Boolean listIsSearch) {
         this.listIsSearch = listIsSearch;
+    }
+
+    public String getLength() {
+        return length;
+    }
+
+    public void setLength(String length) {
+        this.length = length;
     }
 }

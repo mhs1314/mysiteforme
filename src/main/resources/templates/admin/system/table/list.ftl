@@ -190,7 +190,7 @@
                     return;
                 }
                 for(var i=0;i<data.length;i++){
-                    if(data[i].name.indexOf("sys_")>=0){
+                    if((data[i].name.indexOf("sys_")>=0) && (data[i].name.indexOf("_sys_")<0)){
                         return layer.msg("系统表不能生成源码");
                     }
                     var comment = data[i].comment.split(','),
