@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>内容-基本配置--${site.name}</title>
+    <title>内容-分类--${site.name}</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -19,9 +19,38 @@
 </head>
 <body class="childrenBody">
 <fieldset class="layui-elem-field">
-  <legend>内容-基本配置检索</legend>
+  <legend>内容-分类检索</legend>
   <div class="layui-field-box">
     <form class="layui-form" id="searchForm">
+    <div class="layui-inline" style="margin-left: 15px">
+            <label>分类名称:</label>
+                <div class="layui-input-inline">
+                <input type="text" value="" name="s_name" placeholder="请输入分类名称" class="layui-input search_input">
+                </div>
+    </div>
+    <div class="layui-inline" style="margin-left: 15px">
+            <label>是否显示:</label>
+                <div class="layui-input-inline">
+                <select name="s_isShow">
+                    <option value="" selected="">请选择是否显示</option>
+                    <option value="true" >是</option>
+                    <option value="false" >否</option>
+                </select>
+                </div>
+    </div>
+    <div class="layui-inline" style="margin-left: 15px">
+            <label>所属模块:</label>
+                <div class="layui-input-inline">
+                <select name="s_modle">
+                    <option value="" selected="">请选择所属模块</option>
+                    <@my type="wx_content_type_modle">
+                    <#list result as r>
+                    <option value="${r.value}" >${r.label}</option>
+                    </#list>
+                    </@my>
+                </select>
+                </div>
+    </div>
         <div class="layui-inline">
             <a class="layui-btn" lay-submit="" lay-filter="searchForm">查询</a>
         </div>
@@ -29,40 +58,35 @@
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
         <div class="layui-inline">
-            <a class="layui-btn layui-btn-normal" data-type="addWxContentConfig">添加内容-基本配置</a>
+            <a class="layui-btn layui-btn-normal" data-type="addWxContentType">添加内容-分类</a>
         </div>
     </form>
   </div>
 </fieldset>
 <div class="layui-form users_list">
     <table class="layui-table" id="test" lay-filter="demo"></table>
-    <script type="text/html" id="isOpenAudio">
-        {{#  if(d.openAudio == true){ }}
+    <script type="text/html" id="isShow">
+        {{#  if(d.show == true){ }}
         <span>是</span>
         {{# }else{ }}
         <span>否</span>
         {{# } }}
     </script>
-    <script type="text/html" id="isOpenComment">
-        {{#  if(d.openComment == true){ }}
-        <span>是</span>
-        {{# }else{ }}
-        <span>否</span>
-        {{# } }}
+    <script type="text/html" id="icon">
+    {{#  if(d.icon != "" && d.icon != null){ }}
+    <span id="icon_{{d.id}}" ><img lay-event="imageicon" layer-pid="{{d.id}}" layer-src="{{d.icon}}" src="{{d.icon}}" style="width: 40px;"/></span>
+    {{#  } else { }}
+    <span ></span>
+    {{#  } }}
     </script>
-    <script type="text/html" id="isNeedExamine">
-        {{#  if(d.needExamine == true){ }}
-        <span>是</span>
-        {{# }else{ }}
-        <span>否</span>
-        {{# } }}
-    </script>
-    <script type="text/html" id="isShowLike">
-        {{#  if(d.showLike == true){ }}
-        <span>是</span>
-        {{# }else{ }}
-        <span>否</span>
-        {{# } }}
+    <script type="text/html" id="modle">
+        <@my type="wx_content_type_modle">
+        <#list result as r>
+        {{#  if(d.modle == ${r.value}){ }}
+        <span>${r.label}</span>
+        {{#  } }}
+        </#list>
+        </@my>
     </script>
     <script type="text/html" id="userStatus">
         <!-- 这里的 checked 的状态只是演示 -->
@@ -95,12 +119,12 @@
             var data = obj.data;
             if(obj.event === 'edit'){
                 var editIndex = layer.open({
-                    title : "编辑内容-基本配置",
+                    title : "编辑内容-分类",
                     type : 2,
-                    content : "${base}/wx/wxContentConfig/edit?id="+data.id,
+                    content : "${base}/wx/wxContentType/edit?id="+data.id,
                     success : function(layero, index){
                         setTimeout(function(){
-                            layer.tips('点击此处返回内容-基本配置列表', '.layui-layer-setwin .layui-layer-close', {
+                            layer.tips('点击此处返回内容-分类列表', '.layui-layer-setwin .layui-layer-close', {
                                 tips: 3
                             });
                         },500);
@@ -113,9 +137,9 @@
                 layer.full(editIndex);
             }
             if(obj.event === "del"){
-                layer.confirm("你确定要删除该内容-基本配置么？",{btn:['是的,我确定','我再想想']},
+                layer.confirm("你确定要删除该内容-分类么？",{btn:['是的,我确定','我再想想']},
                         function(){
-                            $.post("${base}/wx/wxContentConfig/delete",{"id":data.id},function (res){
+                            $.post("${base}/wx/wxContentType/delete",{"id":data.id},function (res){
                                 if(res.success){
                                     layer.msg("删除成功",{time: 1000},function(){
                                         location.reload();
@@ -128,11 +152,17 @@
                         }
                 )
             }
+            if(obj.event == "imageicon"){
+                layer.photos({
+                    photos: '#icon_'+data.id,
+                    anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+                });
+            }
         });
 
         var t = {
             elem: '#test',
-            url:'${base}/wx/wxContentConfig/list',
+            url:'${base}/wx/wxContentType/list',
             method:'post',
             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
@@ -145,13 +175,12 @@
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             cols: [[
                 {type:'checkbox'},
-                {field:'openAudio', title: '音视频自动播放 0关闭 1开启',templet:'#isOpenAudio'},
-                {field:'openComment', title: '评论留言功能：0关闭 1开启',templet:'#isOpenComment'},
-                {field:'needExamine', title: '评论审核：0不审核 1审核',templet:'#isNeedExamine'},
-                {field:'browseIntegralNum', title: '浏览文章增加积分'},
-                {field:'commentIntegralNum', title: '评论文章增加积分'},
-                {field:'showLike', title: '显示相关爱好物',templet:'#isShowLike'},
-                {field:'delFlag',    title: '内容-基本配置状态',width:'12%',templet:'#userStatus'},
+                {field:'name', title: '分类名称'},
+                {field:'show', title: '是否显示',templet:'#isShow'},
+                {field:'sort', title: '排序'},
+                {field:'icon', title: '图标',templet:'#icon'},
+                {field:'modle', title: '所属模块',templet:'#modle'},
+                {field:'delFlag',    title: '内容-分类状态',width:'12%',templet:'#userStatus'},
                 {field:'createDate',  title: '创建时间',width:'15%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
                 {fixed: 'right', title:'操作',  width: '15%', align: 'center',toolbar: '#barDemo'}
             ]]
@@ -159,14 +188,14 @@
         table.render(t);
 
         var active={
-            addWxContentConfig : function(){
+            addWxContentType : function(){
                 var addIndex = layer.open({
-                    title : "添加内容-基本配置",
+                    title : "添加内容-分类",
                     type : 2,
-                    content : "${base}/wx/wxContentConfig/add",
+                    content : "${base}/wx/wxContentType/add",
                     success : function(layero, addIndex){
                         setTimeout(function(){
-                            layer.tips('点击此处返回内容-基本配置列表', '.layui-layer-setwin .layui-layer-close', {
+                            layer.tips('点击此处返回内容-分类列表', '.layui-layer-setwin .layui-layer-close', {
                                 tips: 3
                             });
                         },500);

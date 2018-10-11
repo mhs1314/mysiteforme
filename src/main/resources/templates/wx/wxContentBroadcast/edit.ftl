@@ -46,7 +46,7 @@
                 <div class="layui-upload">
                     <button type="button" class="layui-btn" id="test_image">上传图片处理</button>
                     <div class="layui-upload-list">
-                        <img class="layui-upload-img" id="demo_image" <#if (wxContentBroadcast.image??)>src="${wxContentBroadcast.image}"</#if> >
+                        <img class="layui-upload-img" id="demo_image" <#if (wxContentBroadcast.image??)>src='${site.qq}/'+"${wxContentBroadcast.image}"</#if> >
                         <p id="demoText_image"></p>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">显示 0不显示 1显示</label>
+        <label class="layui-form-label">显示</label>
         <div class="layui-input-block">
                 <input type="checkbox" name="show"  lay-skin="switch" lay-text="是|否" value="1"  <#if (wxContentBroadcast.show == true)> checked </#if> >
 
@@ -75,10 +75,10 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">所属模块 0首页 1资讯 2积分</label>
+        <label class="layui-form-label">所属模块</label>
         <div class="layui-input-block">
                 <select name="modle" >
-                    <option value="" selected="">请选择所属模块 0首页 1资讯 2积分</option>
+                    <option value="" selected="">请选择所属模块</option>
                     <@my type="wx_content_broadcast_modle">
                     <#list result as r>
                     <option value="${r.value}"  <#if (wxContentBroadcast.modle == r.value)> selected="" </#if>  >${r.label}</option>
@@ -106,8 +106,8 @@
                         //普通图片上传
         var upload_image = upload.render({
             elem: '#test_image',
-            url: '${base}/file/upload/',
-            field:'test',
+            url: '${site.weibo}',
+            field:'file',
             before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
@@ -115,11 +115,12 @@
                 });
             },
             done: function(res){
+                alert(res)
                 //如果上传失败
-                if(res.success == false){
+                if(res.success == false || res.code==200){
                     return layer.msg('上传失败');
                 }
-                $("#image").val(res.data.url);
+                $("#image").val('${site.qq}/'+res.data.url);
             },
             error: function(){
                 //演示失败状态，并实现重传

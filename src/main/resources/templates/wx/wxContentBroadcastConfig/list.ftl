@@ -131,7 +131,7 @@
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             cols: [[
                 {type:'checkbox'},
-                {field:'showPoint', title: '面板指示灯 0不显示 1显示',templet:'#isShowPoint'},
+                {field:'showPoint', title: '面板指示灯',templet:'#isShowPoint'},
                 {field:'autoChange', title: '自动切换 0不能 1可以',templet:'#isAutoChange'},
                 {field:'autoChangeTime', title: '自动切换时间间隔（毫秒）'},
                 {field:'animationTime', title: '滑动动画时长（毫秒）'},

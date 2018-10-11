@@ -9,7 +9,7 @@ import com.mysiteforme.admin.entity.WxContentBroadcast;
  * </p>
  *
  * @author wangl
- * @since 2018-10-10
+ * @since 2018-10-11
  */
 public interface WxContentBroadcastService extends IService<WxContentBroadcast> {
 

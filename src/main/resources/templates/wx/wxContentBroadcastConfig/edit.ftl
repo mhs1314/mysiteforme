@@ -33,7 +33,7 @@
 <form class="layui-form" style="width:80%;">
     <input value="${wxContentBroadcastConfig.id}" name="id" type="hidden">
     <div class="layui-form-item">
-        <label class="layui-form-label">面板指示灯 0不显示 1显示</label>
+        <label class="layui-form-label">面板指示灯</label>
         <div class="layui-input-block">
                 <input type="checkbox" name="showPoint"  lay-skin="switch" lay-text="是|否" value="1"  <#if (wxContentBroadcastConfig.showPoint == true)> checked </#if> >
 

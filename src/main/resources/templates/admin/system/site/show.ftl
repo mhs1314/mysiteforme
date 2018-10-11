@@ -87,13 +87,13 @@
             <td>fileUploadType</td>
         </tr>
         <tr>
-            <td>微博</td>
-            <td><input type="text" class="layui-input author" name="weibo" value="${site.weibo}" placeholder="请输入微博地址"></td>
+            <td>远程文件上传路径</td>
+            <td><input type="text" class="layui-input author" name="weibo" value="${site.weibo}" placeholder="请输入远程文件上传路径"></td>
             <td>weibo</td>
         </tr>
         <tr>
-            <td>QQ</td>
-            <td><input type="text" class="layui-input author" name="qq" value="${site.qq}" placeholder="请输入QQ号"></td>
+            <td>远程文件下载路径</td>
+            <td><input type="text" class="layui-input author" name="qq" value="${site.qq}" placeholder="请输入远程文件下载路径"></td>
             <td>qq</td>
         </tr>
         <tr>

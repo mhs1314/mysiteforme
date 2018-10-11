@@ -147,7 +147,7 @@
                         <option value="VARCHAR" data-default="255">VARCHAR(JAVA:String)</option>
                         <option value="CHAR" data-default="255">CHAR(JAVA:String)</option>
                     <#--<option value="BLOB" data-default="">BLOB(JAVA:byte)</option>-->
-                        <option value="TEXT" data-default="">TEXT(JAVA:String)</option>
+                        <option value="TEXT" data-default="0">TEXT(JAVA:String)</option>
                     </optgroup>
                     <optgroup label="布尔类型">
                         <option value="BIT" data-default="1">BIT(JAVA:Boolean)</option>
@@ -169,7 +169,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">字段长度</label>
             <div class="layui-input-block">
-                <input type="text" class="layui-input" lay-verType="tips" name="length" id="fieldLength" lay-verify="lengthCheck" placeholder="字段长度(不确认长度可以不填)">
+                <input type="text" value="0" class="layui-input" lay-verType="tips" name="length" id="fieldLength" lay-verify="lengthCheck" placeholder="字段长度(不确认长度可以不填)">
             </div>
         </div>
         <div class="layui-form-item">
@@ -405,8 +405,8 @@
             }
             //如果是文本字段
             if(data.value === "TEXT"){
-                $("input[name='length']").attr("disabled","").addClass("layui-disabled");
-                $("select[name='dofor']").find("option[value='editor'],[value='textarea']").removeAttr("disabled");
+                $("input[name='length']").attr("disabled","").addClass("layui-disabled").val(0);
+                $("select[name='dofor']").find("option[value='editor'],[value='textarea'],[value='uploadImg'],[value='uploadFile']").removeAttr("disabled");
             }
             //如果是字符串字段
             if(data.value === "VARCHAR" || data.value === "CHAR"){
@@ -743,8 +743,8 @@
                         }
                         //如果是文本字段
                         if(v === "TEXT"){
-                            $("input[name='length']").attr("disabled","").addClass("layui-disabled");
-                            $("select[name='dofor']").find("option[value='editor'],[value='textarea']").removeAttr("disabled");
+                            $("input[name='length']").attr("disabled","").addClass("layui-disabled").val(0);
+                            $("select[name='dofor']").find("option[value='editor'],[value='textarea'],[value='uploadImg'],[value='uploadFile']").removeAttr("disabled");
                         }
                         //如果是字符串字段
                         if(v === "VARCHAR" || v === "CHAR"){

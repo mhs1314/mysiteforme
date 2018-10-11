@@ -70,7 +70,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">显示相关爱好物 0不显示 1显示</label>
+        <label class="layui-form-label">显示相关爱好物</label>
         <div class="layui-input-block">
 
             <input type="checkbox" name="showLike"  lay-skin="switch" value="1" lay-text="是|否" >

@@ -232,7 +232,7 @@
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             cols: [[
                 {type:'checkbox'},
-                {field:'show', title: '显示 0不显示 1显示',templet:'#isShow'},
+                {field:'show', title: '显示',templet:'#isShow'},
                 {field:'userName', title: '用户姓名'},
                 {field:'userIcon', title: '用户头像',templet:'#userIcon'},
                 {field:'addTime',  title: '评论时间',templet:'<div>{{ layui.laytpl.toDateString(d.addTime,"yyyy-MM-dd") }}</div>',unresize: true},

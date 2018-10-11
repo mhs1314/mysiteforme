@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>内容-轮播管理添加--${site.name}</title>
+    <title>内容-分类添加--${site.name}</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -32,35 +32,14 @@
 <body class="childrenBody">
 <form class="layui-form" style="width:80%;">
     <div class="layui-form-item">
-        <label class="layui-form-label">标题名称</label>
+        <label class="layui-form-label">分类名称</label>
         <div class="layui-input-block">
 
-            <input  type="text"  class="layui-input" name="titleName"  placeholder="请输入标题名称">
+            <input  type="text"  class="layui-input" name="name"  placeholder="请输入分类名称">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">图片处理</label>
-        <div class="layui-input-block">
-
-            <input type="hidden" class="layui-input" name="image" id="image" >
-            <div class="layui-upload">
-                <button type="button" class="layui-btn" id="test_image">上传图片处理</button>
-                <div class="layui-upload-list">
-                    <img class="layui-upload-img" id="demo_image">
-                    <p id="demoText_image"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">链接地址</label>
-        <div class="layui-input-block">
-
-            <input  type="text"  class="layui-input" name="url"  placeholder="请输入链接地址">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">显示</label>
+        <label class="layui-form-label">是否显示</label>
         <div class="layui-input-block">
 
             <input type="checkbox" name="show"  lay-skin="switch" value="1" lay-text="是|否" >
@@ -75,12 +54,26 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">图标</label>
+        <div class="layui-input-block">
+
+            <input type="hidden" class="layui-input" name="icon" id="icon" >
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test_icon">上传图标</button>
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="demo_icon">
+                    <p id="demoText_icon"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">所属模块</label>
         <div class="layui-input-block">
 
             <select name="modle" >
                 <option value="" selected="">请选择所属模块</option>
-                <@my type="wx_content_broadcast_modle">
+                <@my type="wx_content_type_modle">
                 <#list result as r>
                 <option value="${r.value}" >${r.label}</option>
                 </#list>
@@ -90,7 +83,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="addWxContentBroadcast">立即提交</button>
+            <button class="layui-btn" lay-submit="" lay-filter="addWxContentType">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -104,14 +97,14 @@
                 layer = layui.layer;
 
                         //普通图片上传
-        var upload_image = upload.render({
-            elem: '#test_image',
+        var upload_icon = upload.render({
+            elem: '#test_icon',
             url: '${base}/file/upload/',
             field:'test',
             before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
-                    $('#demo_image').attr('src', result); //图片链接（base64）
+                    $('#demo_icon').attr('src', result); //图片链接（base64）
                 });
             },
             done: function(res){
@@ -119,33 +112,33 @@
                 if(res.success == false){
                     return layer.msg('上传失败');
                 }
-                $("#image").val(res.data.url);
+                $("#icon").val(res.data.url);
             },
             error: function(){
                 //演示失败状态，并实现重传
-                var demoText = $('#demoText_image');
+                var demoText = $('#demoText_icon');
                 demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
                 demoText.find('.demo-reload').on('click', function(){
-                    upload_image.upload();
+                    upload_icon.upload();
                 });
             }
         });
 
-        form.on("submit(addWxContentBroadcast)",function(data){
-                        if(undefined === data.field.show || '0' === data.field.show || null === data.field.show){
+        form.on("submit(addWxContentType)",function(data){
+                     if(undefined === data.field.show || '0' === data.field.show || null === data.field.show){
                     data.field.show = false;
                 }else{
                     data.field.show = true;
                 }
 
-
+   
             var loadIndex = layer.load(2, {
                 shade: [0.3, '#333']
             });
-            $.post("${base}/wx/wxContentBroadcast/add",data.field,function(res){
+            $.post("${base}/wx/wxContentType/add",data.field,function(res){
                 layer.close(loadIndex);
                 if(res.success){
-                    parent.layer.msg("内容-轮播管理添加成功！",{time:1000},function(){
+                    parent.layer.msg("内容-分类添加成功！",{time:1000},function(){
                         parent.layer.close(parent.addIndex);
                         //刷新父页面
                         parent.location.reload();

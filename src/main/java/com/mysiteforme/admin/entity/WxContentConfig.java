@@ -44,7 +44,7 @@ public class WxContentConfig extends DataEntity<WxContentConfig> {
 	@TableField("comment_integral_num")
 	private Integer commentIntegralNum;
     /**
-     * 显示相关爱好物 0不显示 1显示
+     * 显示相关爱好物
      */
 	@TableField("is_show_like")
 	private Boolean isShowLike;

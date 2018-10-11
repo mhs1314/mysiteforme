@@ -29,10 +29,10 @@
                 </div>
     </div>
     <div class="layui-inline" style="margin-left: 15px">
-            <label>所属模块 0首页 1资讯 2积分:</label>
+            <label>所属模块:</label>
                 <div class="layui-input-inline">
                 <select name="s_modle">
-                    <option value="" selected="">请选择所属模块 0首页 1资讯 2积分</option>
+                    <option value="" selected="">请选择所属模块</option>
                     <@my type="wx_content_broadcast_modle">
                     <#list result as r>
                     <option value="${r.value}" >${r.label}</option>
@@ -168,9 +168,9 @@
                 {field:'titleName', title: '标题名称'},
                 {field:'image', title: '图片处理',templet:'#image'},
                 {field:'url', title: '链接地址'},
-                {field:'show', title: '显示 0不显示 1显示',templet:'#isShow'},
+                {field:'show', title: '显示',templet:'#isShow'},
                 {field:'sort', title: '排序'},
-                {field:'modle', title: '所属模块 0首页 1资讯 2积分',templet:'#modle'},
+                {field:'modle', title: '所属模块',templet:'#modle'},
                 {field:'delFlag',    title: '内容-轮播管理状态',width:'12%',templet:'#userStatus'},
                 {field:'createDate',  title: '创建时间',width:'15%',templet:'<div>{{ layui.laytpl.toDateString(d.createDate) }}</div>',unresize: true}, //单元格内容水平居中
                 {fixed: 'right', title:'操作',  width: '15%', align: 'center',toolbar: '#barDemo'}

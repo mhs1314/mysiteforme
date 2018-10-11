@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">显示 0不显示 1显示</label>
+        <label class="layui-form-label">显示</label>
         <div class="layui-input-block">
 
             <input type="checkbox" name="show"  lay-skin="switch" value="1" lay-text="是|否" >
