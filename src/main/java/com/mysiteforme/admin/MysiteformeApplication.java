@@ -14,7 +14,7 @@ public class MysiteformeApplication extends SpringBootServletInitializer {
 //		return application.sources(MysiteformeApplication.class);
 //	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(MysiteformeApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MysiteformeApplication.class, args);
+    }
 }
