@@ -198,7 +198,7 @@
             done: function(res){
                 //如果上传失败
                 if(res.success == false){
-                    return layer.msg('上传失败');
+                    return layer.msg('失败');
                 }
                 $("#${m}").val(res.data.url);
             },

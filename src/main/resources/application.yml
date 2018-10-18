@@ -89,7 +89,7 @@ mybatis-plus:
 #开发环境配置
 server:
   #端口
-  port: 8080
+  port: 9092
 spring:
   profiles: dev
   #redis配置
@@ -113,17 +113,18 @@ spring:
 #日志
 logging:
   config: classpath:log/logback.xml
-  path: D:\log\mysiteforme
+  path: \var\log\mysiteforme
 
 #自定义配置属性
 #源码生成文件夹
-source-code-dic:  D://mysite
-source-code-zipfile:  D://源码.rar
+source-code-dic:  /var/mysite
+source-code-zipfile:  /var/源码.rar
 
 #搜索文件生成包的位置
 #本地路径
-lucence-dic: D://lucence
-
+lucence-dic: /var/lucence
+#文件上传路径
+localUploadPath: /tmp/bs80/data
 ---
 #测试环境配置
 server:
