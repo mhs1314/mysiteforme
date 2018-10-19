@@ -292,8 +292,25 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>1.4.2.RELEASE</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>com.mysiteforme.admin.MysiteformeApplication</mainClass>
+					<!--fork : 如果没有该项配置，这个devtools不会起作用，即应用不会restart -->
+					<fork>false</fork>
+					<includeSystemScope>true</includeSystemScope>
+					<!--增加jvm参数-->
+					<jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
+				</configuration>
 			</plugin>
 		</plugins>
+
 	</build>
 
 
