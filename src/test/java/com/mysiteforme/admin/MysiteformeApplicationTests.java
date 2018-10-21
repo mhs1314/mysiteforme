@@ -1,3 +1,4 @@
+/*
 package com.mysiteforme.admin;
 
 import com.alibaba.fastjson.JSONObject;
@@ -29,3 +30,4 @@ public class MysiteformeApplicationTests {
 	}
 
 }
+*/
