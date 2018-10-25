@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import com.mysiteforme.admin.annotation.SysLog;
 import com.mysiteforme.admin.entity.Site;
 import com.mysiteforme.admin.service.UploadService;
+import com.mysiteforme.admin.util.FileUtil;
 import com.mysiteforme.admin.util.QiniuFileUtil;
 import com.mysiteforme.admin.util.RestResponse;
 import com.mysiteforme.admin.util.ToolUtil;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sun.net.www.protocol.http.HttpURLConnection;
@@ -33,6 +35,7 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by tnt on 2017/12/7.
@@ -80,6 +83,18 @@ public class FileController {
         try {
             if("local".equals(site.getFileUploadType())){
                 url = localService.upload(file);
+            }
+            if ("api".equals(site.getFileUploadType())) {
+                byte[] bytes = file.getBytes(); // 文件字节流
+                String extName = file.getOriginalFilename().substring(
+                        file.getOriginalFilename().lastIndexOf("."));
+                String fileName = UUID.randomUUID() + extName;
+                File fileToSave = new File(fileName);
+                FileCopyUtils.copy(bytes, fileToSave); // 保存文件
+                url = FileUtil.down + FileUtil.upload(fileToSave).getJSONObject("data").getString("url");
+                if (fileToSave.exists()) {
+                    fileToSave.delete();
+                }
             }
             if("qiniu".equals(site.getFileUploadType())){
                 url = qiniuService.upload(file);
@@ -257,7 +272,7 @@ public class FileController {
             try {
                 // 文件保存路径
                 if (StringUtils.isBlank(localUploadPath)) {
-                    localUploadPath = request.getSession().getServletContext().getRealPath("/") + "/static/upload/" + System.currentTimeMillis() + "/";
+                    localUploadPath = request.getSession().getServletContext().getRealPath("/") + "/" + System.currentTimeMillis() + "/";
                     String filePath = localUploadPath + file.getOriginalFilename();
                     file.transferTo(new File(filePath));
                     return filePath;

@@ -49,7 +49,7 @@ public class LocalUploadServiceImpl implements UploadService {
         out.write(data);
         out.flush();
         out.close();
-        String webUrl = "/static/upload/"+fileName;
+        String webUrl = "/"+fileName;
         rescource = new Rescource();
         rescource.setFileName(fileName);
         rescource.setFileSize(new java.text.DecimalFormat("#.##").format(file.getSize()/1024)+"kb");
@@ -102,7 +102,7 @@ public class LocalUploadServiceImpl implements UploadService {
         File targetFile = new File(filePath+fileName);
         String webUrl = "";
         if(targetFile.exists()){
-            webUrl = "/static/upload/"+fileName;
+            webUrl = "/"+fileName;
             rescource = new Rescource();
             QETag tag = new QETag();
             rescource.setFileName(fileName);
@@ -151,7 +151,7 @@ public class LocalUploadServiceImpl implements UploadService {
         }
         String filePath = sb.append("static/upload/").toString();
         StringBuffer name = new StringBuffer(RandomUtil.randomUUID());
-        StringBuffer returnUrl = new StringBuffer("/static/upload/");
+        StringBuffer returnUrl = new StringBuffer("/");
         String  extName = "";
         extName = file.getName().substring(
                 file.getName().lastIndexOf("."));
@@ -180,7 +180,7 @@ public class LocalUploadServiceImpl implements UploadService {
 
     @Override
     public String uploadBase64(String base64) {
-        StringBuffer webUrl=new StringBuffer("/static/upload/");
+        StringBuffer webUrl=new StringBuffer("/");
         BASE64Decoder decoder = new BASE64Decoder();
         try
         {

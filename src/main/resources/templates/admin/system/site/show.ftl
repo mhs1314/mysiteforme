@@ -81,6 +81,7 @@
             <td>文件上传方式</td>
             <td>
                 <input type="radio" name="fileUploadType" value="local" title="本地上传" <#if (site.fileUploadType == "local") >checked=""</#if>   >
+                <input type="radio" name="fileUploadType" value="api" title="远程api" <#if (site.fileUploadType == "api") >checked=""</#if>   >
                 <input type="radio" name="fileUploadType" value="qiniu" title="七牛云存储" lay-filter="qiniuUpload" <#if (site.fileUploadType == "qiniu") >checked=""</#if>>
                 <input type="radio" name="fileUploadType" value="oss" title="阿里云存储" lay-filter="ossUpload" <#if (site.fileUploadType == "oss") >checked=""</#if>>
             </td>
