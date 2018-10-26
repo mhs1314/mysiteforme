@@ -18,9 +18,9 @@ import java.io.IOException;
 public class FileUtil {
 
     @Value("${http.upload.url}")
-    public static String url="http://127.0.0.1:9091/app/fileserver/upload";
+    public static String url="http://132.232.87.134:9091/app/fileserver/upload";
     @Value("${http.down.url}")
-    public static String down="http://127.0.0.1:9091/app/fileserver/";
+    public static String down="http://132.232.87.134:9091/app/fileserver/";
     public static JSONObject upload(File file) {
         JSONObject jsonObject=null;
         String result ="";

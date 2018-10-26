@@ -125,6 +125,10 @@ source-code-zipfile:  /var/源码.rar
 lucence-dic: /var/lucence
 #文件上传路径
 localUploadPath: /tmp/bs80/data
+#远程上传文件api
+http.upload.url: http://132.232.87.134:9091/app/fileserver/upload
+#远程上传文件下载api
+http.down.url: http://132.232.87.134:9091/app/fileserver/
 ---
 #测试环境配置
 server:
