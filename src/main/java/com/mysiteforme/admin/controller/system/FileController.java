@@ -92,9 +92,7 @@ public class FileController {
                 File fileToSave = new File(fileName);
                 FileCopyUtils.copy(bytes, fileToSave); // 保存文件
                 url = FileUtil.down + FileUtil.upload(fileToSave).getJSONObject("data").getString("url");
-                if (fileToSave.exists()) {
-                    fileToSave.delete();
-                }
+
             }
             if("qiniu".equals(site.getFileUploadType())){
                 url = qiniuService.upload(file);

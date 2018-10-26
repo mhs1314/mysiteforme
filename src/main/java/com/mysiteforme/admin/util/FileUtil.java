@@ -51,6 +51,7 @@ public class FileUtil {
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
+            file.delete();
             filePost.releaseConnection();
         }
         return jsonObject;

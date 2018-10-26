@@ -94,7 +94,7 @@ spring:
   profiles: dev
   #redis配置
   redis:
-      database: 1
+      database: 2
       host: 132.232.87.134
       port: 6379
       password: mhs123%      # 密码（默认为空）
