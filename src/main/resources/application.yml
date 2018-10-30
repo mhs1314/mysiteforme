@@ -117,8 +117,8 @@ logging:
 
 #自定义配置属性
 #源码生成文件夹
-source-code-dic:  /var/mysite
-source-code-zipfile:  /var/源码.rar
+source-code-dic:  D:/
+source-code-zipfile:  D:/源码.rar
 
 #搜索文件生成包的位置
 #本地路径

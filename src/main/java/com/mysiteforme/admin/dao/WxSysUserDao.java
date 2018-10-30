@@ -9,7 +9,7 @@ import com.mysiteforme.admin.entity.WxSysUser;
  * </p>
  *
  * @author wangl
- * @since 2018-10-10
+ * @since 2018-10-31
  */
 public interface WxSysUserDao extends BaseMapper<WxSysUser> {
 

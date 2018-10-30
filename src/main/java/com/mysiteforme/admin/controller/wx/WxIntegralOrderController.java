@@ -33,7 +33,7 @@ import java.util.Map;
  * </p>
  *
  * @author wangl
- * @since 2018-10-10
+ * @since 2018-10-31
  */
 @Controller
 @RequestMapping("/wx/wxIntegralOrder")
@@ -65,6 +65,34 @@ public class WxIntegralOrderController {
                 wrapper.eq("order_status",orderStatus);
             }else{
                 map.remove("orderStatus");
+            }
+
+            String name = (String) map.get("name");
+            if(StringUtils.isNotBlank(name)) {
+                wrapper.like("name",name);
+            }else{
+                map.remove("name");
+            }
+
+            String phone = (String) map.get("phone");
+            if(StringUtils.isNotBlank(phone)) {
+                wrapper.like("phone",phone);
+            }else{
+                map.remove("phone");
+            }
+
+            String goodName = (String) map.get("goodName");
+            if(StringUtils.isNotBlank(goodName)) {
+                wrapper.like("good_name",goodName);
+            }else{
+                map.remove("goodName");
+            }
+
+            String goodType = (String) map.get("goodType");
+            if(StringUtils.isNotBlank(goodType)) {
+                wrapper.eq("good_type",goodType);
+            }else{
+                map.remove("goodType");
             }
 
         }

@@ -12,7 +12,7 @@ import com.mysiteforme.admin.base.DataEntity;
  * </p>
  *
  * @author wangl
- * @since 2018-10-10
+ * @since 2018-10-31
  */
 @TableName("wx_sys_user")
 public class WxSysUser extends DataEntity<WxSysUser> {

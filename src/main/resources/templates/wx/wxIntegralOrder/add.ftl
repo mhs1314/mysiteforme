@@ -60,17 +60,94 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">订单状态 0待支付 1取消 2已支付</label>
+        <label class="layui-form-label">订单状态 0待支付 1取消 2已支付 3待发货 4已发货 5已收货</label>
         <div class="layui-input-block">
 
             <select name="orderStatus" >
-                <option value="" selected="">请选择订单状态 0待支付 1取消 2已支付</option>
+                <option value="" selected="">请选择订单状态 0待支付 1取消 2已支付 3待发货 4已发货 5已收货</option>
                 <@my type="wx_integral_order_order_status">
                 <#list result as r>
                 <option value="${r.value}" >${r.label}</option>
                 </#list>
                 </@my>
             </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">地址</label>
+        <div class="layui-input-block">
+
+            <input  type="text"  class="layui-input" name="address"  placeholder="请输入地址">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+
+            <input  type="text"  class="layui-input" name="name"  placeholder="请输入姓名">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-block">
+
+            <input  type="text"  class="layui-input" name="phone"  placeholder="请输入电话">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮编</label>
+        <div class="layui-input-block">
+
+            <input  type="text"  class="layui-input" name="code"  placeholder="请输入邮编">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品图片(逗号分隔)</label>
+        <div class="layui-input-block">
+
+            <input type="hidden" class="layui-input" name="goodImgs" id="goodImgs" >
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test_goodImgs">上传商品图片(逗号分隔)</button>
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="demo_goodImgs">
+                    <p id="demoText_goodImgs"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品名称</label>
+        <div class="layui-input-block">
+
+            <input  type="text"  class="layui-input" name="goodName"  placeholder="请输入商品名称">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品价格</label>
+        <div class="layui-input-block">
+
+            <input  type="text"  class="layui-input" name="goodPrice"  placeholder="请输入商品价格">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品类型 0积分 1钱</label>
+        <div class="layui-input-block">
+
+            <select name="goodType" >
+                <option value="" selected="">请选择商品类型 0积分 1钱</option>
+                <@my type="wx_integral_order_good_type">
+                <#list result as r>
+                <option value="${r.value}" >${r.label}</option>
+                </#list>
+                </@my>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">积分商品-积分个数</label>
+        <div class="layui-input-block">
+
+            <input  type="text"  class="layui-input" name="goodSocerNum"  placeholder="请输入积分商品-积分个数">
         </div>
     </div>
     <div class="layui-form-item">
@@ -82,9 +159,10 @@
 </form>
 <script type="text/javascript" src="${base}/static/layui/layui.js"></script>
 <script>
-    layui.use(['form','jquery','layer','laydate'],function(){
+    layui.use(['form','jquery','layer','upload','laydate'],function(){
         var form      = layui.form,
                 $     = layui.jquery,
+                upload = layui.upload,
                 laydate = layui.laydate,
                 layer = layui.layer;
 
@@ -92,6 +170,33 @@
                           laydate.render({
                             elem: '#orderTime'
                           });
+                        //普通图片上传
+        var upload_goodImgs = upload.render({
+            elem: '#test_goodImgs',
+            url: '${base}/file/upload/',
+            field:'test',
+            before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo_goodImgs').attr('src', result); //图片链接（base64）
+                });
+            },
+            done: function(res){
+                //如果上传失败
+                if(res.success == false){
+                    return layer.msg('上传失败');
+                }
+                $("#goodImgs").val(res.data.url);
+            },
+            error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText_goodImgs');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    upload_goodImgs.upload();
+                });
+            }
+        });
 
         form.on("submit(addWxIntegralOrder)",function(data){
                        if(null === data.field.orderTime || "" ===data.field.orderTime){
@@ -99,7 +204,7 @@
                     }else{
                         data.field.orderTime = new Date(data.field.orderTime);
                     }
-
+   
             var loadIndex = layer.load(2, {
                 shade: [0.3, '#333']
             });
