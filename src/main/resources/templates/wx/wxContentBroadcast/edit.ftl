@@ -46,7 +46,7 @@
                 <div class="layui-upload">
                     <button type="button" class="layui-btn" id="test_image">上传图片处理</button>
                     <div class="layui-upload-list">
-                        <img class="layui-upload-img" id="demo_image" <#if (wxContentBroadcast.image??)>src='${site.qq}/'+"${wxContentBroadcast.image}"</#if> >
+                        <img class="layui-upload-img" id="demo_image" <#if (wxContentBroadcast.image??)>src="${wxContentBroadcast.image}"</#if> >
                         <p id="demoText_image"></p>
                     </div>
                 </div>
@@ -106,22 +106,21 @@
                         //普通图片上传
         var upload_image = upload.render({
             elem: '#test_image',
-            url: '${site.weibo}',
-            field:'file',
+            url: '${base}/file/upload/',
+            field:'test',
             before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
-                    $('#demo_image').attr('src', '${site.qq}'+result); //图片链接（base64）
+                    $('#demo_image').attr('src', result); //图片链接（base64）
                 });
             },
             done: function(res){
-                alert(res)
                 //如果上传失败
-                if(res.success == false || res.code==200){
+                if(res.success == false){
                     return layer.msg('上传失败');
                 }
-                $("#image").val('${site.qq}/'+res.data.url);
-            },
+                $("#image").val(res.data.url);
+    },
             error: function(){
                 //演示失败状态，并实现重传
                 var demoText = $('#demoText_image');
